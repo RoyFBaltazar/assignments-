@@ -50,10 +50,8 @@ class App extends React.Component{
             <input type="submit" />
             </form>
             <h3>To Buy:</h3>
-            <ul>{this.state.list.map(items=><li>{items.item}</li> )}
-                {/* <li>{this.state.item}</li>
-            <li>{this.state.quantity}</li>
-            <li>{this.state.units}</li> */}
+            <ul>{this.state.list.map(items=><li>Item: {items.item} <br/>Quantity: {items.quantity}<br/>  Units: {items.units}</li> )}
+            
             </ul>
 
 
