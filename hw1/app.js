@@ -6,13 +6,13 @@
 
 class App extends React.Component{
     state ={
-        
+        list:[{
         item: '',
         brand: '',
         units: '',
         quantity: 0,
-        isPurchased: false,
-      
+        isPurchased: false,}
+      ]
 }
     
     handleChange=(event)=>{
@@ -20,18 +20,18 @@ class App extends React.Component{
     }
     handleSubmit=(event)=>{
         event.preventDefault()
-        const items =[]
+        
         const newItem={
             item: this.state.item,
             quantity: this.state.quantity,
             units: this.state.units
         }
-        this.setState({items: [newItem],
+        this.setState({list: [ newItem, ...this.state.list],
         item:'',
         quantity: 0,
         units: '',
         })
-        console.log(event)
+        
         
     }
     
@@ -50,10 +50,10 @@ class App extends React.Component{
             <input type="submit" />
             </form>
             <h3>To Buy:</h3>
-            <ul>
-                <li>{this.state.item}</li>
+            <ul>{this.state.list.map(items=><li>{items.item}</li> )}
+                {/* <li>{this.state.item}</li>
             <li>{this.state.quantity}</li>
-            <li>{this.state.units}</li>
+            <li>{this.state.units}</li> */}
             </ul>
 
 
