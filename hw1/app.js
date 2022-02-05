@@ -24,17 +24,21 @@ class App extends React.Component{
         const newItem={
             item: this.state.item,
             quantity: this.state.quantity,
-            units: this.state.units
+            units: this.state.units,
+            isPurchased: false
         }
         this.setState({list: [ newItem, ...this.state.list],
         item:'',
         quantity: 0,
         units: '',
         })
-        
+        console.log(newItem)
         
     }
-    
+    handleBought =()=>{
+        this.setState({isPurchased: true})
+        
+    }
     render(){
     
         return(
@@ -50,10 +54,11 @@ class App extends React.Component{
             <input type="submit" />
             </form>
             <h3>To Buy:</h3>
-            <ul>{this.state.list.map(items=><li>Item: {items.item} <br/>Quantity: {items.quantity}<br/>  Units: {items.units}</li> )}
+            <ul>{this.state.list.map(items=>{ return items.isPurchased ? '': 
+            <li key={items.item} onClick={()=> this.handleBought(items.isPurchased)}>Item: {items.item} <br/>Quantity: {items.quantity}<br/>  Units: {items.units}<br/> Bought:{items.isPurchased?<span>Bought</span>:<span>not yet</span>}</li>} )}
             
             </ul>
-
+            
 
             </div>
         )
